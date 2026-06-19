@@ -66,13 +66,15 @@
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.75rem;
             border-radius: 8px;
             transition: all 0.3s;
+            font-size: 0.85rem;
         }
 
         .nav-links a:hover {
@@ -113,6 +115,13 @@
             color: var(--p1);
         }
 
+        .duration-badge {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: var(--p3);
+            margin-left: 0.5rem;
+        }
+
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
@@ -150,7 +159,7 @@
 
         .toc-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
         }
 
@@ -163,7 +172,7 @@
             border-radius: 10px;
             text-decoration: none;
             color: var(--text);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s;
         }
 
@@ -182,6 +191,38 @@
             justify-content: center;
             font-weight: 700;
             font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Timeline */
+        .oral-timeline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .timeline-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .timeline-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--p1);
+        }
+
+        .timeline-label {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-top: 0.25rem;
         }
 
         /* Sections */
@@ -304,51 +345,6 @@
             font-style: italic;
         }
 
-        /* Tech highlight */
-        .tech-highlight {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            background: rgba(6, 182, 212, 0.2);
-            color: var(--p2);
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Timeline */
-        .oral-timeline {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-            justify-content: center;
-        }
-
-        .timeline-item {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            text-align: center;
-            min-width: 120px;
-        }
-
-        .timeline-time {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--p1);
-        }
-
-        .timeline-label {
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin-top: 0.25rem;
-        }
-
         /* Diagram */
         .diagram {
             background: rgba(10, 10, 15, 0.8);
@@ -425,6 +421,15 @@
             align-items: flex-start;
         }
 
+        .alert.tip {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .alert.tip .alert-content h4 {
+            color: var(--p3);
+        }
+
         .alert-icon {
             font-size: 1.5rem;
         }
@@ -437,6 +442,32 @@
         .alert-content p {
             color: var(--muted);
             font-size: 0.9rem;
+        }
+
+        /* Case study */
+        .case-study {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid var(--p2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .case-study h4 {
+            color: var(--p2);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .case-study ul {
+            margin-left: 1.5rem;
+        }
+
+        .case-study li {
+            color: var(--muted);
+            margin: 0.5rem 0;
         }
 
         /* Question prep */
@@ -524,6 +555,7 @@
             <a href="#accroche">Accroche</a>
             <a href="#partie1">Partie 1</a>
             <a href="#partie2">Partie 2</a>
+            <a href="#partie3">Partie 3</a>
             <a href="#conclusion">Conclusion</a>
             <a href="#questions">Questions</a>
         </div>
@@ -535,6 +567,10 @@
                 <span>📡</span>
                 <span>SUJET 01 — Sciences de l'Ingénieur</span>
             </div>
+            <div class="subject-badge duration-badge">
+                <span>⏱️</span>
+                <span>10 min exposé + 10 min échange</span>
+            </div>
             <h1>Satellites Radar SAR :<br>Surveiller la Déforestation depuis l'Espace</h1>
             <p class="hero-subtitle">Dans quelles mesures l'architecture embarquée des satellites radar SAR en orbite permet-elle d'étudier la déforestation en temps réel, tout en s'adaptant aux conditions météorologiques et en respectant les contraintes énergétiques de l'environnement spatial ?</p>
         </section>
@@ -545,29 +581,33 @@
                 <div class="timeline-label">Accroche</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">0:30</div>
+                <div class="timeline-time">1:00</div>
                 <div class="timeline-label">Problématique</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">1:00</div>
+                <div class="timeline-time">1:30</div>
                 <div class="timeline-label">Partie 1</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">2:30</div>
+                <div class="timeline-time">4:00</div>
                 <div class="timeline-label">Partie 2</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">4:00</div>
+                <div class="timeline-time">6:30</div>
+                <div class="timeline-label">Partie 3</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">8:30</div>
                 <div class="timeline-label">Conclusion</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">5:00</div>
+                <div class="timeline-time">10:00</div>
                 <div class="timeline-label">FIN</div>
             </div>
         </div>
 
         <nav class="toc">
-            <h2>📋 Plan de l'exposé</h2>
+            <h2>📋 Plan de l'exposé (10 minutes)</h2>
             <div class="toc-grid">
                 <a href="#accroche" class="toc-item">
                     <span class="toc-number">0</span>
@@ -575,19 +615,23 @@
                 </a>
                 <a href="#partie1" class="toc-item">
                     <span class="toc-number">1</span>
-                    Technologie SAR & Traitement
+                    Technologie SAR & Traitement du signal
                 </a>
                 <a href="#partie2" class="toc-item">
                     <span class="toc-number">2</span>
-                    Contraintes & Optimisations
+                    Contraintes spatiales & Optimisations
+                </a>
+                <a href="#partie3" class="toc-item">
+                    <span class="toc-number">3</span>
+                    Applications & Cas concrets
                 </a>
                 <a href="#conclusion" class="toc-item">
-                    <span class="toc-number">3</span>
+                    <span class="toc-number">4</span>
                     Conclusion & Ouverture
                 </a>
                 <a href="#questions" class="toc-item">
                     <span class="toc-number">?</span>
-                    Questions anticipées
+                    Questions (10 min)
                 </a>
             </div>
         </nav>
@@ -598,32 +642,41 @@
                 <div class="section-number">0</div>
                 <div>
                     <h2 class="section-title">Accroche & Problématique</h2>
-                    <p class="section-subtitle">30 secondes pour captiver le jury</p>
+                    <p class="section-subtitle">1 minute 30 pour captiver le jury</p>
                 </div>
             </div>
 
             <div class="script-box">
-                <p>« Toutes les 6 secondes, l'équivalent d'un terrain de football de forêt disparaît sur Terre. En 2023, nous avons perdu 4,1 millions d'hectares de forêts tropicales primaires. Face à cette urgence, comment surveiller en temps réel des zones aussi vastes que l'Amazonie, même quand elles sont couvertes de nuages 90% du temps ? La réponse vient de l'espace : les satellites radar SAR. »</p>
+                <p>« Toutes les 6 secondes, l'équivalent d'un terrain de football de forêt disparaît sur Terre. En 2023, nous avons perdu 4,1 millions d'hectares de forêts tropicales primaires — c'est la superficie de la Suisse. Ces forêts sont les poumons de notre planète : elles absorbent 30% du CO₂ émis par l'humanité. »</p>
+            </div>
+
+            <div class="script-box">
+                <p>« Mais comment surveiller en temps réel des zones aussi vastes que l'Amazonie, un territoire grand comme l'Europe, couvert de nuages 90% du temps ? Les satellites optiques classiques, comme Landsat, sont aveugles face à cette couverture nuageuse permanente. La réponse vient d'une technologie extraordinaire : le radar SAR, capable de voir à travers les nuages, de jour comme de nuit. »</p>
             </div>
 
             <div class="content-card">
                 <h4>🎯 Objectifs de l'accroche</h4>
                 <ul>
                     <li><strong>Chiffre choc</strong> : 6 secondes = 1 terrain de football perdu</li>
-                    <li><strong>Problème réel</strong> : Zones couvertes de nuages inaccessibles aux satellites optiques</li>
+                    <li><strong>Contexte environnemental</strong> : 30% du CO₂ absorbé par les forêts</li>
+                    <li><strong>Problème technique</strong> : 90% de couverture nuageuse → satellites optiques inutiles</li>
                     <li><strong>Solution annoncée</strong> : La technologie SAR</li>
                 </ul>
             </div>
 
             <div class="script-box">
-                <p>« Ma problématique est la suivante : <strong>Comment l'architecture embarquée des satellites SAR permet-elle d'observer la déforestation en continu, malgré les conditions météorologiques, tout en gérant les contraintes énergétiques extrêmes de l'espace ?</strong> Pour y répondre, je vais d'abord vous expliquer le fonctionnement du radar SAR et son traitement du signal, puis nous verrons comment les ingénieurs optimisent ces systèmes face aux contraintes spatiales. »</p>
+                <p>« Ma problématique est la suivante : <strong>Comment l'architecture embarquée des satellites SAR permet-elle d'observer la déforestation en continu, malgré les conditions météorologiques, tout en gérant les contraintes énergétiques extrêmes de l'espace ?</strong> »</p>
             </div>
 
-            <div class="alert">
+            <div class="script-box">
+                <p>« Pour y répondre, je vais d'abord vous expliquer le fonctionnement du radar SAR et son traitement du signal. Ensuite, nous verrons comment les ingénieurs optimisent ces systèmes face aux contraintes spatiales. Enfin, j'illustrerai avec des applications concrètes de détection de la déforestation. »</p>
+            </div>
+
+            <div class="alert tip">
                 <span class="alert-icon">💡</span>
                 <div class="alert-content">
                     <h4>Conseil de posture</h4>
-                    <p>Pendant l'accroche, fixe les jurys tour à tour. Marque une pause après "4,1 millions d'hectares" pour laisser le chiffre s'imprimer. Ta voix doit monter sur "La réponse vient de l'espace".</p>
+                    <p>Pendant l'accroche, fixe les jurys tour à tour. Marque une pause après "la superficie de la Suisse" pour laisser le chiffre s'imprimer. Ta voix doit monter sur "La réponse vient d'une technologie extraordinaire". Annonce clairement les 3 parties de ton plan.</p>
                 </div>
             </div>
         </section>
@@ -634,69 +687,78 @@
                 <div class="section-number" style="background: linear-gradient(135deg, var(--p2), var(--p3));">1</div>
                 <div>
                     <h2 class="section-title">Technologie SAR & Traitement du Signal</h2>
-                    <p class="section-subtitle">1 minute 30 — Le cœur technique du sujet</p>
+                    <p class="section-subtitle">2 minutes 30 — Le cœur technique du sujet</p>
                 </div>
             </div>
 
             <div class="script-box">
-                <p>« SAR signifie <em>Synthetic Aperture Radar</em>, ou Radar à Synthèse d'Ouverture. Contrairement aux satellites optiques qui captent la lumière du soleil réfléchie, le SAR émet ses propres ondes radar et analyse leur écho. C'est comme une chauve-souris géante dans l'espace. »</p>
+                <p>« SAR signifie <em>Synthetic Aperture Radar</em>, ou Radar à Synthèse d'Ouverture. Contrairement aux satellites optiques qui captent la lumière du soleil réfléchie, le SAR émet ses propres ondes radar et analyse leur écho. C'est comme une chauve-souris géante dans l'espace, qui utilise l'écholocalisation pour "voir" la Terre. »</p>
             </div>
 
             <div class="content-card">
-                <h4>📡 Principe de fonctionnement</h4>
+                <h4>📡 Principe de fonctionnement en 4 étapes</h4>
                 <ul>
-                    <li><strong>Émission</strong> : Le satellite envoie des impulsions micro-ondes (bande C à 5,4 GHz ou bande L à 1,3 GHz)</li>
-                    <li><strong>Réflexion</strong> : Les ondes rebondissent sur la surface terrestre (forêts, sol, eau)</li>
-                    <li><strong>Réception</strong> : L'antenne capte le signal rétrodiffusé avec son amplitude et sa phase</li>
-                    <li><strong>Avantage clé</strong> : Les micro-ondes traversent les nuages → observation jour/nuit, tout temps</li>
+                    <li><strong>1. Émission</strong> : Le satellite envoie des impulsions micro-ondes (bande C à 5,4 GHz ou bande L à 1,3 GHz)</li>
+                    <li><strong>2. Réflexion</strong> : Les ondes rebondissent sur la surface terrestre (forêts, sol, eau) selon leurs propriétés</li>
+                    <li><strong>3. Réception</strong> : L'antenne capte le signal rétrodiffusé avec son amplitude et sa phase</li>
+                    <li><strong>4. Traitement</strong> : Des algorithmes sophistiqués reconstruisent une image haute résolution</li>
                 </ul>
+            </div>
+
+            <div class="script-box">
+                <p>« L'avantage fondamental du SAR, c'est que les micro-ondes traversent les nuages sans être absorbées. Là où un satellite optique voit un écran blanc, le SAR voit la forêt en dessous. C'est pour cela qu'il est indispensable en zone tropicale. »</p>
             </div>
 
             <div class="diagram">
                 <div class="diagram-title">Chaîne de traitement du signal SAR</div>
                 <div class="diagram-flow">
-                    <div class="diagram-box">Émission impulsion</div>
+                    <div class="diagram-box">Émission<br>impulsion chirp</div>
                     <span class="diagram-arrow">→</span>
-                    <div class="diagram-box">Rétrodiffusion</div>
+                    <div class="diagram-box">Rétrodiffusion<br>par la surface</div>
                     <span class="diagram-arrow">→</span>
-                    <div class="diagram-box">Réception brute</div>
+                    <div class="diagram-box">Réception<br>signal brut</div>
                     <span class="diagram-arrow">→</span>
-                    <div class="diagram-box">Compression d'impulsion</div>
+                    <div class="diagram-box">Compression<br>d'impulsion</div>
                     <span class="diagram-arrow">→</span>
-                    <div class="diagram-box">Focalisation azimutale</div>
+                    <div class="diagram-box">Focalisation<br>azimutale</div>
                     <span class="diagram-arrow">→</span>
-                    <div class="diagram-box">Image SAR</div>
+                    <div class="diagram-box">Image SAR<br>focalisée</div>
                 </div>
             </div>
 
             <div class="script-box">
-                <p>« Le traitement du signal est crucial. L'antenne physique fait environ 12 mètres, mais grâce à la <strong>synthèse d'ouverture</strong>, on simule une antenne virtuelle de plusieurs kilomètres. Comment ? En combinant mathématiquement les échos reçus pendant que le satellite avance sur son orbite. C'est un traitement par <strong>corrélation</strong> qui utilise la transformée de Fourier pour focaliser l'image. »</p>
+                <p>« Parlons maintenant du traitement du signal, qui est au cœur de la technologie SAR. L'antenne physique fait environ 12 mètres de long. Or, la résolution d'un radar est inversement proportionnelle à la taille de l'antenne. Avec 12 mètres, on aurait une résolution de plusieurs kilomètres — inutile pour détecter la déforestation. »</p>
+            </div>
+
+            <div class="script-box">
+                <p>« C'est là qu'intervient la <strong>synthèse d'ouverture</strong>. Le satellite se déplace à 7 km/s sur son orbite. Pendant qu'il avance, il émet des milliers d'impulsions. Chaque impulsion "voit" la même zone sous un angle légèrement différent. Le traitement du signal combine mathématiquement tous ces échos pour simuler une antenne virtuelle de plusieurs kilomètres de long. »</p>
             </div>
 
             <div class="formula">
                 <div class="formula-title">Résolution azimutale (dans le sens du déplacement)</div>
                 <div class="formula-content">δ<sub>az</sub> = L / 2</div>
-                <p style="margin-top: 1rem; color: var(--muted); font-size: 0.85rem;">où L = longueur de l'antenne physique (≈ 12m → résolution ≈ 6m)</p>
-            </div>
-
-            <div class="content-card">
-                <h4>🌳 Application à la déforestation</h4>
-                <ul>
-                    <li><strong>Détection de changement</strong> : On compare deux images prises à des dates différentes</li>
-                    <li><strong>Cohérence interférométrique</strong> : La forêt "bouge" (feuilles, branches) → faible cohérence. Sol nu → haute cohérence</li>
-                    <li><strong>Signature radar</strong> : Une forêt renvoie un signal fort (volume), un sol déboisé renvoie un signal plus faible et uniforme</li>
-                </ul>
+                <p style="margin-top: 1rem; color: var(--muted); font-size: 0.85rem;">où L = longueur de l'antenne physique (≈ 12m → résolution finale ≈ 6m après traitement)</p>
             </div>
 
             <div class="script-box">
-                <p>« Le satellite Sentinel-1 de l'ESA utilise cette technologie. Il peut détecter une zone déboisée de 0,5 hectare, soit moins d'un terrain de football, et cela même sous la couverture nuageuse permanente de l'Amazonie. Le traitement du signal transforme des données brutes en alertes de déforestation en moins de 24 heures. »</p>
+                <p>« Ce traitement utilise la <strong>transformée de Fourier</strong> et des techniques de <strong>corrélation</strong>. L'impulsion émise est un signal "chirp" — une fréquence qui varie dans le temps. En corrélant le signal reçu avec le signal émis, on compresse l'impulsion et on améliore la résolution en distance. C'est ce qu'on appelle la <strong>compression d'impulsion</strong>. »</p>
             </div>
 
-            <div class="alert">
+            <div class="content-card">
+                <h4>🌳 Comment détecter la déforestation ?</h4>
+                <ul>
+                    <li><strong>Signature radar de la forêt</strong> : Les arbres créent une diffusion de volume → signal fort et "chaotique"</li>
+                    <li><strong>Signature du sol nu</strong> : Après coupe, le sol renvoie un signal plus faible et régulier</li>
+                    <li><strong>Détection de changement</strong> : On compare deux images SAR à des dates différentes</li>
+                    <li><strong>Cohérence interférométrique</strong> : La forêt "bouge" (feuilles, branches) → faible cohérence temporelle. Sol nu → haute cohérence</li>
+                </ul>
+            </div>
+
+            <div class="alert tip">
                 <span class="alert-icon">🎓</span>
                 <div class="alert-content">
                     <h4>Point technique à maîtriser</h4>
-                    <p>Si on te demande "C'est quoi la synthèse d'ouverture ?", réponds : "C'est une technique de traitement du signal qui combine les échos reçus pendant le déplacement du satellite pour simuler une très grande antenne virtuelle, ce qui améliore la résolution de l'image."</p>
+                    <p>Si on te demande "C'est quoi la synthèse d'ouverture ?", réponds : "C'est une technique de traitement du signal qui combine les échos reçus pendant le déplacement du satellite pour simuler une très grande antenne virtuelle. On utilise la corrélation et la transformée de Fourier pour focaliser l'image et obtenir une résolution métrique."</p>
                 </div>
             </div>
         </section>
@@ -707,102 +769,183 @@
                 <div class="section-number" style="background: linear-gradient(135deg, var(--p4), var(--p5));">2</div>
                 <div>
                     <h2 class="section-title">Contraintes Spatiales & Optimisations Énergétiques</h2>
-                    <p class="section-subtitle">1 minute 30 — Les défis de l'ingénieur</p>
+                    <p class="section-subtitle">2 minutes 30 — Les défis de l'ingénieur spatial</p>
                 </div>
             </div>
 
             <div class="script-box">
-                <p>« Dans l'espace, chaque watt compte. Un satellite SAR comme Sentinel-1 dispose d'environ 5 400 watts de puissance solaire, mais le radar seul peut consommer jusqu'à 4 000 watts en émission. C'est un défi d'ingénierie majeur. »</p>
+                <p>« Passons maintenant aux contraintes de l'environnement spatial. Dans l'espace, chaque watt compte. Un satellite SAR comme Sentinel-1 de l'Agence Spatiale Européenne dispose d'environ 5 400 watts de puissance solaire. Mais le radar seul peut consommer jusqu'à 4 000 watts en émission. C'est un défi d'ingénierie majeur : comment alimenter un radar gourmand avec des ressources limitées ? »</p>
             </div>
 
             <div class="content-card">
-                <h4>⚡ Les 3 contraintes majeures</h4>
+                <h4>⚡ Les 3 contraintes majeures du spatial</h4>
                 <ul>
-                    <li><strong>Énergie limitée</strong> : Panneaux solaires de 10 m² + batteries lithium-ion de 324 Ah</li>
-                    <li><strong>Thermique extrême</strong> : De -150°C (ombre) à +150°C (soleil) → électronique durcie</li>
-                    <li><strong>Masse contrainte</strong> : Chaque kg coûte ~20 000€ à lancer → optimisation de l'antenne</li>
+                    <li><strong>Énergie limitée</strong> : Panneaux solaires de 10 m² + batteries lithium-ion de 324 Ah. En éclipse (passage dans l'ombre de la Terre), seules les batteries alimentent le satellite.</li>
+                    <li><strong>Thermique extrême</strong> : De -150°C (ombre) à +150°C (face au soleil). L'électronique doit être durcie et thermorégulée.</li>
+                    <li><strong>Masse contrainte</strong> : Chaque kg coûte environ 20 000€ à lancer. Sentinel-1 pèse 2 300 kg, dont 880 kg pour l'instrument SAR.</li>
                 </ul>
             </div>
 
             <div class="diagram">
                 <div class="diagram-title">Bilan énergétique simplifié (Sentinel-1)</div>
                 <div class="diagram-flow">
-                    <div class="diagram-box" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(239, 68, 68, 0.4));">Panneaux solaires<br>5 400 W</div>
+                    <div class="diagram-box" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(239, 68, 68, 0.4));">Panneaux solaires<br>5 400 W max</div>
                     <span class="diagram-arrow">→</span>
                     <div class="diagram-box">Radar SAR<br>4 000 W</div>
                     <span class="diagram-arrow">+</span>
-                    <div class="diagram-box">Électronique<br>800 W</div>
+                    <div class="diagram-box">Électronique bord<br>800 W</div>
                     <span class="diagram-arrow">+</span>
-                    <div class="diagram-box">Thermique<br>400 W</div>
+                    <div class="diagram-box">Contrôle thermique<br>400 W</div>
                 </div>
+                <p style="margin-top: 1rem; color: var(--p5); font-size: 0.85rem;">⚠️ Total = 5 200 W → marge très faible !</p>
             </div>
 
             <div class="script-box">
-                <p>« Pour gérer ces contraintes, les ingénieurs ont développé plusieurs stratégies. Premièrement, le <strong>mode TOPS</strong> (Terrain Observation with Progressive Scans) : au lieu d'imager en continu, le radar balaie plusieurs bandes successivement, réduisant la consommation de 30%. Deuxièmement, le <strong>traitement embarqué</strong> : on compresse les données directement sur le satellite pour limiter la bande passante vers la Terre. »</p>
+                <p>« Pour gérer cette équation énergétique serrée, les ingénieurs ont développé plusieurs stratégies d'optimisation. La première, c'est le <strong>mode TOPS</strong> — Terrain Observation with Progressive Scans. Au lieu d'imager en continu, le radar balaie plusieurs bandes successivement en orientant électroniquement le faisceau. Cela permet de couvrir 250 km de large tout en réduisant la consommation moyenne de 30%. »</p>
             </div>
 
             <div class="content-card">
-                <h4>🔧 Solutions d'optimisation</h4>
+                <h4>🔧 Stratégies d'optimisation énergétique</h4>
                 <ul>
-                    <li><strong>Mode TOPS</strong> : Balayage progressif → couverture 250 km de large avec moins de puissance</li>
-                    <li><strong>Compression BAQ</strong> : Block Adaptive Quantization → réduit les données de 8 bits à 2-4 bits</li>
-                    <li><strong>Antenne AESA</strong> : Réseau à commande de phase → orientation électronique sans moteur</li>
-                    <li><strong>Duty cycle</strong> : Le radar n'émet que 25% du temps (cycles on/off)</li>
+                    <li><strong>Mode TOPS</strong> : Balayage progressif → couverture 250 km de large avec puissance moyenne réduite</li>
+                    <li><strong>Duty cycle</strong> : Le radar n'émet que 25% du temps (cycles on/off rapides)</li>
+                    <li><strong>Compression BAQ</strong> : Block Adaptive Quantization → réduit les données de 8 bits à 2-4 bits embarqué</li>
+                    <li><strong>Antenne AESA</strong> : Réseau à commande de phase → orientation électronique du faisceau sans moteur mécanique</li>
+                    <li><strong>Traitement embarqué</strong> : Pré-compression des données pour limiter le débit vers la Terre</li>
                 </ul>
             </div>
 
             <div class="script-box">
-                <p>« L'adaptation aux conditions météorologiques est automatique : les ondes radar traversent les nuages sans être absorbées. C'est l'avantage fondamental sur les satellites optiques comme Landsat. Cependant, les fortes pluies peuvent atténuer le signal en bande C, c'est pourquoi on utilise parfois la bande L, qui est plus pénétrante. »</p>
+                <p>« L'adaptation aux conditions météorologiques est automatique et c'est là toute la force du SAR. Les ondes radar à 5,4 GHz traversent les nuages sans atténuation significative. L'atténuation est d'environ 0,01 dB par kilomètre même sous pluie modérée — contre plus de 30 dB pour la lumière visible à travers les nuages. »</p>
             </div>
 
             <div class="formula">
-                <div class="formula-title">Atténuation atmosphérique (approximation)</div>
-                <div class="formula-content">A ≈ 0.01 dB/km (bande C, pluie modérée)</div>
-                <p style="margin-top: 1rem; color: var(--muted); font-size: 0.85rem;">Négligeable comparé à l'atténuation optique par les nuages (>30 dB)</p>
+                <div class="formula-title">Atténuation atmosphérique comparée</div>
+                <div class="formula-content">
+                    SAR bande C : A ≈ 0.01 dB/km<br>
+                    Optique (nuages) : A > 30 dB
+                </div>
+                <p style="margin-top: 1rem; color: var(--muted); font-size: 0.85rem;">Le SAR "voit" à travers les nuages, l'optique est aveugle</p>
+            </div>
+
+            <div class="script-box">
+                <p>« Cependant, les fortes pluies tropicales peuvent atténuer légèrement le signal en bande C. C'est pourquoi certaines missions utilisent la bande L à 1,3 GHz, qui est plus pénétrante. Le satellite japonais ALOS-2, par exemple, utilise cette bande pour mieux pénétrer la canopée forestière. »</p>
             </div>
 
             <div class="alert">
                 <span class="alert-icon">🔑</span>
                 <div class="alert-content">
                     <h4>Argument massue</h4>
-                    <p>« Le SAR est le seul moyen de surveiller l'Amazonie en temps quasi-réel, car la région est couverte de nuages plus de 80% du temps. Sans cette technologie, nous serions aveugles face à la déforestation illégale. »</p>
+                    <p>« Le SAR est le seul moyen de surveiller l'Amazonie en temps quasi-réel, car la région est couverte de nuages plus de 80% du temps. Sans cette technologie, nous serions totalement aveugles face à la déforestation illégale. »</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTIE 3 -->
+        <section id="partie3" class="section" style="--c: var(--p3);">
+            <div class="section-header">
+                <div class="section-number" style="background: linear-gradient(135deg, var(--p3), var(--p2));">3</div>
+                <div>
+                    <h2 class="section-title">Applications Concrètes & Cas d'Étude</h2>
+                    <p class="section-subtitle">2 minutes — Du concept à la réalité terrain</p>
+                </div>
+            </div>
+
+            <div class="script-box">
+                <p>« Passons maintenant aux applications concrètes. Le programme européen Copernicus, avec ses satellites Sentinel-1, illustre parfaitement l'efficacité du SAR pour la surveillance environnementale. Depuis 2014, ces satellites ont révolutionné notre capacité à détecter la déforestation. »</p>
+            </div>
+
+            <div class="case-study">
+                <h4>🛰️ Cas d'étude : Sentinel-1 et l'Amazonie</h4>
+                <ul>
+                    <li><strong>Couverture</strong> : L'Amazonie entière est imagée tous les 12 jours (6 jours avec les 2 satellites)</li>
+                    <li><strong>Résolution</strong> : 20 mètres en mode IW (Interferometric Wide Swath)</li>
+                    <li><strong>Détection minimale</strong> : Zones déboisées de 0,5 hectare (moins d'un terrain de football)</li>
+                    <li><strong>Temps de réaction</strong> : Alertes générées en moins de 24 heures après acquisition</li>
+                </ul>
+            </div>
+
+            <div class="script-box">
+                <p>« Le système GLAD — Global Land Analysis and Discovery — de l'Université du Maryland utilise les données Sentinel-1 combinées aux images optiques. En 2022, ce système a détecté plus de 4 millions d'alertes de déforestation dans le monde. Au Brésil, ces alertes sont transmises directement à l'IBAMA, l'agence environnementale, qui peut envoyer des équipes sur le terrain. »</p>
+            </div>
+
+            <div class="content-card">
+                <h4>📊 Chiffres clés du programme Sentinel-1</h4>
+                <ul>
+                    <li><strong>Données produites</strong> : 3 téraoctets par jour</li>
+                    <li><strong>Couverture mondiale</strong> : Toutes les terres émergées en 12 jours</li>
+                    <li><strong>Accès</strong> : Données gratuites et ouvertes (Open Data)</li>
+                    <li><strong>Utilisateurs</strong> : Plus de 500 000 utilisateurs enregistrés dans le monde</li>
+                </ul>
+            </div>
+
+            <div class="script-box">
+                <p>« Un autre exemple remarquable est la start-up finlandaise ICEYE, qui déploie une constellation de micro-satellites SAR. Chaque satellite ne pèse que 100 kg, contre 2 300 kg pour Sentinel-1. Grâce à leur constellation de 20 satellites, ils peuvent revisiter n'importe quel point du globe en quelques heures seulement, contre 6 jours pour Sentinel-1. »</p>
+            </div>
+
+            <div class="case-study">
+                <h4>🚀 L'avenir : les constellations de micro-satellites</h4>
+                <ul>
+                    <li><strong>ICEYE (Finlande)</strong> : 20+ satellites de 100 kg, revisite en quelques heures</li>
+                    <li><strong>Capella Space (USA)</strong> : Résolution sub-métrique (50 cm)</li>
+                    <li><strong>Synspective (Japon)</strong> : Constellation dédiée à la gestion des catastrophes</li>
+                    <li><strong>Avantage</strong> : Coût de lancement divisé par 20, revisite quasi temps réel</li>
+                </ul>
+            </div>
+
+            <div class="script-box">
+                <p>« Ces constellations ouvrent la voie à une surveillance en temps quasi-réel. Imaginez : un bûcheron illégal commence à couper des arbres en Amazonie. En quelques heures, un satellite passe au-dessus, détecte l'activité suspecte, et une alerte est envoyée aux autorités. C'est une révolution dans la lutte contre la déforestation. »</p>
+            </div>
+
+            <div class="alert tip">
+                <span class="alert-icon">🌍</span>
+                <div class="alert-content">
+                    <h4>Impact environnemental</h4>
+                    <p>Grâce au SAR, le Brésil a pu réduire la déforestation en Amazonie de 80% entre 2004 et 2012 en ciblant les zones d'activité illégale détectées par satellite. La technologie est un outil puissant pour la protection de l'environnement.</p>
                 </div>
             </div>
         </section>
 
         <!-- CONCLUSION -->
-        <section id="conclusion" class="section" style="--c: var(--p3);">
+        <section id="conclusion" class="section" style="--c: var(--p1);">
             <div class="section-header">
-                <div class="section-number" style="background: linear-gradient(135deg, var(--p3), var(--p1));">3</div>
+                <div class="section-number" style="background: linear-gradient(135deg, var(--p1), var(--p4));">4</div>
                 <div>
                     <h2 class="section-title">Conclusion & Ouverture</h2>
-                    <p class="section-subtitle">1 minute — Synthèse et projection</p>
+                    <p class="section-subtitle">1 minute 30 — Synthèse et projection vers l'avenir</p>
                 </div>
             </div>
 
             <div class="script-box">
-                <p>« Pour conclure, j'ai montré que les satellites SAR répondent parfaitement aux défis de la surveillance de la déforestation. Grâce au traitement du signal par synthèse d'ouverture, ils produisent des images haute résolution. Leur capacité à traverser les nuages les rend indispensables pour les forêts tropicales. Et malgré les contraintes énergétiques de l'espace, des modes d'acquisition optimisés comme le TOPS permettent une couverture globale efficiente. »</p>
+                <p>« Pour conclure, j'ai montré que les satellites radar SAR répondent parfaitement au triple défi de la surveillance de la déforestation. »</p>
             </div>
 
             <div class="content-card">
-                <h4>✅ Points clés à retenir</h4>
+                <h4>✅ Synthèse des 3 parties</h4>
                 <ul>
-                    <li>Le SAR émet ses propres ondes → indépendant de la météo</li>
-                    <li>La synthèse d'ouverture = traitement du signal qui améliore la résolution</li>
-                    <li>Le mode TOPS optimise énergie et couverture</li>
-                    <li>Application directe : alertes de déforestation en 24h</li>
+                    <li><strong>Partie 1 — Technologie</strong> : Le SAR émet ses propres ondes et utilise la synthèse d'ouverture — un traitement du signal par corrélation et transformée de Fourier — pour créer des images haute résolution.</li>
+                    <li><strong>Partie 2 — Contraintes</strong> : Malgré l'énergie limitée et les conditions extrêmes du spatial, des optimisations comme le mode TOPS et le duty cycle permettent une couverture globale efficiente.</li>
+                    <li><strong>Partie 3 — Applications</strong> : Des systèmes opérationnels comme Sentinel-1 et les nouvelles constellations permettent de détecter la déforestation en temps quasi-réel, même sous couverture nuageuse.</li>
                 </ul>
             </div>
 
             <div class="script-box">
-                <p>« En ouverture, je voudrais mentionner la nouvelle génération de satellites SAR : les constellations comme ICEYE avec des micro-satellites de 100 kg seulement. Ces nouveaux systèmes promettent une revisite de quelques heures au lieu de 6 jours, rendant la surveillance de la déforestation encore plus réactive. C'est un domaine en pleine évolution qui m'intéresse particulièrement dans mon projet d'études en ingénierie spatiale. »</p>
+                <p>« Le SAR illustre parfaitement comment l'ingénierie peut résoudre des problèmes environnementaux critiques. Sans cette technologie, nous serions aveugles face à la destruction des forêts tropicales, qui représentent 30% de la capacité d'absorption du CO₂ mondial. »</p>
             </div>
 
-            <div class="alert">
+            <div class="script-box">
+                <p>« En ouverture, je voudrais mentionner les perspectives futures. La prochaine génération de satellites, comme NISAR — une mission conjointe NASA-ISRO prévue pour 2024 — combinera les bandes L et S pour une pénétration encore meilleure de la végétation. Et l'intelligence artificielle permettra bientôt d'analyser automatiquement les images SAR pour détecter la déforestation en quelques minutes après l'acquisition. »</p>
+            </div>
+
+            <div class="script-box">
+                <p>« Ce sujet m'a passionné car il combine mes intérêts pour les sciences physiques, le traitement du signal et l'environnement. Il a conforté mon projet de poursuivre en école d'ingénieurs, idéalement dans le domaine de l'observation de la Terre ou des systèmes spatiaux. Je vous remercie pour votre attention et je suis prêt à répondre à vos questions. »</p>
+            </div>
+
+            <div class="alert tip">
                 <span class="alert-icon">🎯</span>
                 <div class="alert-content">
-                    <h4>Lien avec le projet d'orientation</h4>
-                    <p>Adapte cette ouverture selon ton projet personnel. Si tu veux faire de l'environnement, parle de l'impact climatique. Si tu vises l'aérospatial, parle des constellations. L'important est de montrer ta motivation.</p>
+                    <h4>Conseil pour la conclusion</h4>
+                    <p>Termine sur une note personnelle qui montre ta motivation. Adapte la phrase sur ton projet professionnel selon tes vraies ambitions. Le jury apprécie l'authenticité et la cohérence entre le sujet choisi et le projet d'orientation.</p>
                 </div>
             </div>
         </section>
@@ -813,55 +956,93 @@
                 <div class="section-number" style="background: linear-gradient(135deg, var(--p5), var(--p4));">?</div>
                 <div>
                     <h2 class="section-title">Questions Anticipées</h2>
-                    <p class="section-subtitle">Prépare-toi aux questions du jury (10 minutes)</p>
+                    <p class="section-subtitle">Prépare-toi aux 10 minutes d'échange avec le jury</p>
                 </div>
             </div>
 
             <div class="questions-prep">
-                <h4>❓ Questions techniques probables</h4>
+                <h4>❓ Questions techniques sur le SAR</h4>
 
                 <div class="question-item">
                     <p class="q">Q: Quelle est la différence entre le radar SAR et un radar classique ?</p>
-                    <p class="a">R: Un radar classique (comme celui des avions) mesure la distance et la vitesse d'objets ponctuels. Le SAR utilise le mouvement du satellite et un traitement du signal sophistiqué pour créer des images 2D de la surface terrestre avec une résolution métrique.</p>
+                    <p class="a">R: Un radar classique (comme celui des avions ou des contrôles routiers) mesure la distance et la vitesse d'objets ponctuels. Le SAR utilise le mouvement du satellite et un traitement du signal sophistiqué pour créer des images 2D de la surface terrestre avec une résolution métrique. C'est un radar imageur.</p>
                 </div>
 
                 <div class="question-item">
                     <p class="q">Q: Pourquoi utiliser des micro-ondes plutôt que d'autres fréquences ?</p>
-                    <p class="a">R: Les micro-ondes (1-10 GHz) offrent le meilleur compromis : elles traversent les nuages et la pluie légère, interagissent bien avec la végétation, et permettent des antennes de taille raisonnable (quelques mètres).</p>
+                    <p class="a">R: Les micro-ondes (1-10 GHz) offrent le meilleur compromis : elles traversent les nuages et la pluie légère, interagissent bien avec la végétation (permettant de distinguer forêt et sol), et permettent des antennes de taille raisonnable (quelques mètres). Les fréquences plus basses nécessiteraient des antennes gigantesques, et les plus hautes seraient absorbées par l'atmosphère.</p>
                 </div>
 
                 <div class="question-item">
                     <p class="q">Q: C'est quoi exactement la "synthèse d'ouverture" ?</p>
-                    <p class="a">R: C'est un algorithme qui combine mathématiquement (par corrélation et transformée de Fourier) les signaux reçus à différentes positions du satellite sur son orbite. On simule ainsi une antenne virtuelle très longue, ce qui améliore la résolution dans le sens du déplacement.</p>
+                    <p class="a">R: C'est un algorithme de traitement du signal qui combine mathématiquement — par corrélation et transformée de Fourier — les signaux reçus à différentes positions du satellite sur son orbite. Pendant que le satellite avance, il "voit" la même zone sous des angles différents. En combinant tous ces échos, on simule une antenne virtuelle très longue (plusieurs kilomètres), ce qui améliore considérablement la résolution dans le sens du déplacement.</p>
                 </div>
 
                 <div class="question-item">
                     <p class="q">Q: Comment le satellite détecte-t-il qu'une forêt a été coupée ?</p>
-                    <p class="a">R: On compare deux images SAR à des dates différentes. La forêt renvoie un signal fort et "chaotique" (diffusion de volume). Après coupe, le sol nu renvoie un signal plus faible et régulier. Cette différence de rétrodiffusion est détectable automatiquement.</p>
+                    <p class="a">R: On utilise la détection de changement : on compare deux images SAR à des dates différentes. La forêt intacte renvoie un signal fort et "chaotique" (diffusion de volume par les feuilles et branches). Après coupe, le sol nu renvoie un signal plus faible et régulier. On peut aussi utiliser la cohérence interférométrique : la forêt "bouge" entre deux passages → faible cohérence, tandis que le sol nu reste stable → haute cohérence.</p>
                 </div>
 
                 <div class="question-item">
                     <p class="q">Q: Quelles sont les limites du SAR pour la déforestation ?</p>
-                    <p class="a">R: Le SAR a du mal à détecter la dégradation forestière (arbres partiellement coupés). Il peut aussi confondre des cultures hautes avec la forêt. C'est pourquoi on combine souvent SAR et optique quand le temps le permet.</p>
+                    <p class="a">R: Le SAR a trois limites principales : (1) Il détecte mal la dégradation forestière (arbres partiellement coupés ou malades). (2) Il peut confondre des cultures hautes comme le maïs avec de la forêt. (3) Les fortes pluies tropicales peuvent atténuer le signal. C'est pourquoi on combine souvent SAR et optique quand le temps le permet, pour bénéficier des avantages des deux technologies.</p>
                 </div>
             </div>
 
             <div class="questions-prep">
-                <h4>🧠 Questions sur ta démarche</h4>
+                <h4>⚡ Questions sur les contraintes spatiales</h4>
 
                 <div class="question-item">
-                    <p class="q">Q: Pourquoi as-tu choisi ce sujet ?</p>
-                    <p class="a">R: Je suis passionné par l'intersection entre technologie et environnement. Le SAR m'a fasciné car il combine des concepts fondamentaux (ondes, traitement du signal) avec un impact concret sur la lutte contre le changement climatique.</p>
+                    <p class="q">Q: Pourquoi l'énergie est-elle si limitée dans l'espace ?</p>
+                    <p class="a">R: La seule source d'énergie disponible est le Soleil, capté par des panneaux solaires. Leur taille est limitée par la masse (coût de lancement) et le déploiement. De plus, le satellite passe régulièrement dans l'ombre de la Terre (éclipse), où il doit fonctionner sur batteries. C'est pourquoi chaque watt doit être optimisé.</p>
                 </div>
 
                 <div class="question-item">
-                    <p class="q">Q: Qu'est-ce qui t'a surpris dans tes recherches ?</p>
-                    <p class="a">R: J'ai été surpris par la complexité du traitement du signal nécessaire. Une image SAR brute est inexploitable, il faut des algorithmes sophistiqués pour la "focaliser". C'est vraiment de l'ingénierie de pointe.</p>
+                    <p class="q">Q: Comment fonctionne le mode TOPS que tu as mentionné ?</p>
+                    <p class="a">R: TOPS signifie "Terrain Observation with Progressive Scans". Au lieu de pointer le faisceau radar perpendiculairement au sol (stripmap classique), le satellite balaie électroniquement plusieurs sous-bandes en avant et en arrière pendant son passage. Cela permet de couvrir une fauchée plus large (250 km au lieu de 80 km) avec une résolution légèrement réduite, tout en diminuant la puissance moyenne nécessaire.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Qu'est-ce que la compression d'impulsion ?</p>
+                    <p class="a">R: C'est une technique de traitement du signal. Le radar émet un signal "chirp" — une impulsion dont la fréquence varie dans le temps. À la réception, on corrèle le signal reçu avec le signal émis. Cette corrélation "compresse" l'impulsion et améliore la résolution en distance. Cela permet d'émettre des impulsions longues (plus d'énergie) tout en gardant une bonne résolution.</p>
+                </div>
+            </div>
+
+            <div class="questions-prep">
+                <h4>🧠 Questions sur ta démarche et ton projet</h4>
+
+                <div class="question-item">
+                    <p class="q">Q: Pourquoi as-tu choisi ce sujet ?</p>
+                    <p class="a">R: Je suis passionné par l'intersection entre technologie et environnement. Le SAR m'a fasciné car il combine des concepts fondamentaux de physique (ondes électromagnétiques), de traitement du signal (Fourier, corrélation), et d'ingénierie système (contraintes spatiales). Et surtout, il a un impact concret sur la lutte contre le changement climatique en permettant de protéger les forêts.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Qu'est-ce qui t'a le plus surpris dans tes recherches ?</p>
+                    <p class="a">R: J'ai été surpris par deux choses. D'abord, la complexité du traitement du signal : une image SAR brute est totalement inexploitable, il faut des algorithmes très sophistiqués pour la "focaliser". Ensuite, l'ouverture des données : les images Sentinel-1 sont gratuites et accessibles à tous. N'importe qui peut télécharger des images radar de sa région !</p>
                 </div>
 
                 <div class="question-item">
                     <p class="q">Q: Comment ce sujet s'inscrit dans ton projet professionnel ?</p>
-                    <p class="a">R: [À personnaliser selon ton projet] — Ex: "Je vise une école d'ingénieurs en aérospatial. Ce sujet m'a permis de comprendre les défis réels de la conception de systèmes spatiaux et m'a conforté dans mon choix."</p>
+                    <p class="a">R: [À personnaliser] — Exemple : "Je vise une école d'ingénieurs, idéalement avec une spécialisation en aérospatial ou en traitement du signal. Ce sujet m'a montré que ces domaines ont des applications concrètes et utiles pour la société. J'aimerais contribuer à développer ces technologies, que ce soit pour l'observation de la Terre, la gestion des catastrophes naturelles, ou l'exploration spatiale."</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: As-tu manipulé des données SAR toi-même ?</p>
+                    <p class="a">R: [Si oui] "Oui, j'ai téléchargé des images Sentinel-1 sur le site Copernicus Open Access Hub et je les ai visualisées avec le logiciel SNAP de l'ESA. J'ai pu voir la différence de signature entre zones forestières et zones agricoles." [Si non] "Pas encore, mais j'ai étudié des tutoriels et je compte le faire. Les données sont gratuites et les logiciels open source."</p>
+                </div>
+            </div>
+
+            <div class="questions-prep">
+                <h4>🌍 Questions d'ouverture</h4>
+
+                <div class="question-item">
+                    <p class="q">Q: Le SAR peut-il servir à autre chose que la déforestation ?</p>
+                    <p class="a">R: Absolument ! Le SAR a de nombreuses applications : surveillance des glaciers et de la banquise, détection des marées noires, suivi des mouvements de terrain (volcans, séismes), cartographie des inondations en temps réel, surveillance maritime (détection de navires), et même archéologie (détection de structures enfouies). C'est une technologie très polyvalente.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Quels sont les enjeux éthiques de la surveillance par satellite ?</p>
+                    <p class="a">R: C'est une question importante. La surveillance par satellite peut être utilisée pour le bien (protection de l'environnement, gestion des catastrophes) mais aussi pour des usages problématiques (surveillance de populations, espionnage militaire). Le SAR pose particulièrement question car il peut "voir" à travers les nuages et de nuit. La régulation internationale de ces technologies est un enjeu majeur.</p>
                 </div>
             </div>
 
@@ -869,7 +1050,7 @@
                 <span class="alert-icon">⚠️</span>
                 <div class="alert-content">
                     <h4>Si tu ne connais pas la réponse</h4>
-                    <p>Dis : "Je n'ai pas approfondi ce point précis dans mes recherches, mais je suppose que..." et propose une hypothèse logique. Ou bien : "C'est une excellente question qui mériterait une recherche plus approfondie." Ne mens jamais.</p>
+                    <p>Dis : "Je n'ai pas approfondi ce point précis dans mes recherches, mais je suppose que..." et propose une hypothèse logique basée sur ce que tu sais. Ou reconnais simplement : "C'est une excellente question que je n'ai pas étudiée. Je serais curieux de creuser ce point." L'honnêteté est toujours valorisée par le jury.</p>
                 </div>
             </div>
         </section>
@@ -877,7 +1058,7 @@
 
     <footer>
         <p>Sujet 1 — Satellites Radar SAR & Déforestation</p>
-        <p style="margin-top: 0.5rem; color: var(--muted);">Grand Oral Baccalauréat 2026</p>
+        <p style="margin-top: 0.5rem; color: var(--muted);">Grand Oral Baccalauréat 2026 — 10 min exposé + 10 min échange</p>
         <a href="index.html" class="back-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
