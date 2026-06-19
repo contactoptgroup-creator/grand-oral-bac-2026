@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sujet 2 - Systèmes Avioniques & Redondance | Grand Oral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card: #12121a;
+            --border: #1e1e2e;
+            --text: #e4e4e7;
+            --muted: #71717a;
+            --p1: #f59e0b;
+            --p2: #ef4444;
+            --p3: #22c55e;
+            --p4: #8b5cf6;
+            --p5: #06b6d4;
+            --accent: linear-gradient(135deg, var(--p1), var(--p2));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--p1);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .subject-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--p1);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--p1) 50%, var(--p2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .toc h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .toc-item:hover {
+            background: rgba(245, 158, 11, 0.2);
+            transform: translateX(5px);
+        }
+
+        .toc-number {
+            width: 28px;
+            height: 28px;
+            background: var(--p1);
+            color: #000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        /* Timeline */
+        .oral-timeline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .timeline-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .timeline-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--p1);
+        }
+
+        .timeline-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Sections */
+        .section {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-number {
+            background: var(--accent);
+            color: #000;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Content cards */
+        .content-card {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .content-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-card p, .content-card li {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .content-card ul {
+            margin-left: 1.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .content-card li {
+            margin: 0.5rem 0;
+        }
+
+        /* Script box */
+        .script-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(6, 182, 212, 0.1));
+            border: 2px solid var(--p3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .script-box::before {
+            content: '🎤 À DIRE';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--p3);
+            color: #000;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .script-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* Diagram */
+        .diagram {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .diagram-flow {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .diagram-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(239, 68, 68, 0.3));
+            border: 1px solid var(--p1);
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .diagram-arrow {
+            color: var(--muted);
+            font-size: 1.25rem;
+        }
+
+        /* Redundancy visual */
+        .redundancy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .redundancy-card {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .redundancy-card.active {
+            border-color: var(--p3);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .redundancy-card.standby {
+            border-color: var(--p1);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .redundancy-card.failed {
+            border-color: var(--p2);
+            background: rgba(239, 68, 68, 0.1);
+            opacity: 0.6;
+        }
+
+        .redundancy-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .redundancy-card.active .redundancy-label { color: var(--p3); }
+        .redundancy-card.standby .redundancy-label { color: var(--p1); }
+        .redundancy-card.failed .redundancy-label { color: var(--p2); }
+
+        .redundancy-icon {
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Formula */
+        .formula {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .formula-title {
+            font-size: 0.85rem;
+            color: var(--p4);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .formula-content {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Alert box */
+        .alert {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .alert.tip {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+        }
+
+        .alert-content h4 {
+            color: var(--p2);
+            margin-bottom: 0.25rem;
+        }
+
+        .alert.tip .alert-content h4 {
+            color: var(--p3);
+        }
+
+        .alert-content p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Questions */
+        .questions-prep {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .questions-prep h4 {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .question-item {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .question-item .q {
+            font-weight: 600;
+            color: var(--p1);
+            margin-bottom: 0.75rem;
+        }
+
+        .question-item .a {
+            color: var(--muted);
+            font-size: 0.9rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--p3);
+        }
+
+        /* Comparison table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: rgba(245, 158, 11, 0.15);
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--p1);
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wrap {
+                padding: 1rem;
+            }
+            .section {
+                padding: 1.5rem;
+            }
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .redundancy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html">← Retour à l'accueil</a>
+        <div class="nav-links">
+            <a href="#accroche">Accroche</a>
+            <a href="#partie1">Partie 1</a>
+            <a href="#partie2">Partie 2</a>
+            <a href="#conclusion">Conclusion</a>
+            <a href="#questions">Questions</a>
+        </div>
+    </nav>
+
+    <div class="wrap">
+        <section class="hero">
+            <div class="subject-badge">
+                <span>✈️</span>
+                <span>SUJET 02 — Sciences de l'Ingénieur</span>
+            </div>
+            <h1>Systèmes Avioniques :<br>Fiabilité par la Redondance</h1>
+            <p class="hero-subtitle">Comment garantir la fiabilité des systèmes électroniques critiques en vol grâce à la redondance des composants, tout en limitant leur masse et la consommation énergétique qu'ils engendrent à bord d'un avion ?</p>
+        </section>
+
+        <div class="oral-timeline">
+            <div class="timeline-item">
+                <div class="timeline-time">0:00</div>
+                <div class="timeline-label">Accroche</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">0:30</div>
+                <div class="timeline-label">Problématique</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">1:00</div>
+                <div class="timeline-label">Partie 1</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">2:30</div>
+                <div class="timeline-label">Partie 2</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">4:00</div>
+                <div class="timeline-label">Conclusion</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">5:00</div>
+                <div class="timeline-label">FIN</div>
+            </div>
+        </div>
+
+        <nav class="toc">
+            <h2>📋 Plan de l'exposé</h2>
+            <div class="toc-grid">
+                <a href="#accroche" class="toc-item">
+                    <span class="toc-number">0</span>
+                    Accroche & Problématique
+                </a>
+                <a href="#partie1" class="toc-item">
+                    <span class="toc-number">1</span>
+                    Principes de redondance
+                </a>
+                <a href="#partie2" class="toc-item">
+                    <span class="toc-number">2</span>
+                    Optimisation masse/énergie
+                </a>
+                <a href="#conclusion" class="toc-item">
+                    <span class="toc-number">3</span>
+                    Conclusion & Ouverture
+                </a>
+                <a href="#questions" class="toc-item">
+                    <span class="toc-number">?</span>
+                    Questions anticipées
+                </a>
+            </div>
+        </nav>
+
+        <!-- ACCROCHE -->
+        <section id="accroche" class="section" style="--c: var(--p1);">
+            <div class="section-header">
+                <div class="section-number">0</div>
+                <div>
+                    <h2 class="section-title">Accroche & Problématique</h2>
+                    <p class="section-subtitle">30 secondes pour captiver le jury</p>
+                </div>
+            </div>
+
+            <div class="script-box">
+                <p>« Un Airbus A350 transporte 300 passagers à 900 km/h, à 12 000 mètres d'altitude. À son bord, plus de 6 000 capteurs et 100 ordinateurs contrôlent tout : des commandes de vol aux réacteurs, en passant par la pressurisation. Un seul composant défaillant ne doit jamais mettre en péril la vie des passagers. Comment les ingénieurs garantissent-ils cette fiabilité absolue ? La réponse tient en un mot : la redondance. »</p>
+            </div>
+
+            <div class="content-card">
+                <h4>🎯 Objectifs de l'accroche</h4>
+                <ul>
+                    <li><strong>Contexte concret</strong> : 300 passagers, 12 000 m d'altitude → enjeu vital</li>
+                    <li><strong>Chiffres impressionnants</strong> : 6 000 capteurs, 100 ordinateurs</li>
+                    <li><strong>Question rhétorique</strong> : Crée le suspense avant d'annoncer la solution</li>
+                    <li><strong>Mot-clé</strong> : "Redondance" — le cœur du sujet</li>
+                </ul>
+            </div>
+
+            <div class="script-box">
+                <p>« Ma problématique est donc : <strong>Comment garantir la fiabilité des systèmes électroniques critiques en vol grâce à la redondance, tout en maîtrisant la masse et la consommation énergétique ?</strong> Dans une première partie, j'expliquerai les principes fondamentaux de la redondance en avionique. Puis, nous verrons comment les ingénieurs optimisent ces systèmes pour respecter les contraintes de masse et d'énergie. »</p>
+            </div>
+
+            <div class="alert tip">
+                <span class="alert-icon">💡</span>
+                <div class="alert-content">
+                    <h4>Conseil de posture</h4>
+                    <p>Marque une pause dramatique avant "La réponse tient en un mot". Regarde les jurys tour à tour. Prononce "redondance" avec conviction, comme si tu révélais un secret d'initié.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTIE 1 -->
+        <section id="partie1" class="section" style="--c: var(--p4);">
+            <div class="section-header">
+                <div class="section-number" style="background: linear-gradient(135deg, var(--p4), var(--p5));">1</div>
+                <div>
+                    <h2 class="section-title">Principes de Redondance en Avionique</h2>
+                    <p class="section-subtitle">1 minute 30 — Comprendre les architectures de sécurité</p>
+                </div>
+            </div>
+
+            <div class="script-box">
+                <p>« La redondance, c'est le fait de dupliquer les composants critiques pour que, si l'un tombe en panne, un autre prenne le relais automatiquement. En avionique, on distingue trois niveaux de criticité définis par la norme DO-178C : les systèmes de niveau A sont ceux dont la panne peut être catastrophique — comme les commandes de vol. »</p>
+            </div>
+
+            <div class="content-card">
+                <h4>📊 Niveaux de criticité DAL (Design Assurance Level)</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Niveau</th>
+                        <th>Conséquence d'une panne</th>
+                        <th>Probabilité max.</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><strong>DAL A</strong></td>
+                        <td>Catastrophique</td>
+                        <td>< 10⁻⁹/h</td>
+                        <td>Commandes de vol</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DAL B</strong></td>
+                        <td>Dangereuse</td>
+                        <td>< 10⁻⁷/h</td>
+                        <td>Pilote automatique</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DAL C</strong></td>
+                        <td>Majeure</td>
+                        <td>< 10⁻⁵/h</td>
+                        <td>Affichage cockpit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DAL D</strong></td>
+                        <td>Mineure</td>
+                        <td>Pas de limite</td>
+                        <td>Divertissement</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="script-box">
+                <p>« Pour atteindre une probabilité de panne catastrophique inférieure à 10⁻⁹ par heure de vol — soit moins d'une chance sur un milliard — on utilise la redondance. Il existe plusieurs architectures. »</p>
+            </div>
+
+            <div class="content-card">
+                <h4>🔄 Types de redondance</h4>
+                <ul>
+                    <li><strong>Redondance active (Hot standby)</strong> : Tous les systèmes fonctionnent simultanément, un voteur compare leurs résultats</li>
+                    <li><strong>Redondance passive (Cold standby)</strong> : Un système de secours s'active seulement en cas de panne</li>
+                    <li><strong>Redondance dissimilaire</strong> : Les systèmes sont différents (matériel/logiciel distincts) pour éviter les pannes de mode commun</li>
+                </ul>
+            </div>
+
+            <div class="diagram">
+                <div class="diagram-title">Architecture TMR (Triple Modular Redundancy) — Commandes de vol</div>
+                <div class="redundancy-grid">
+                    <div class="redundancy-card active">
+                        <div class="redundancy-label">Actif</div>
+                        <div class="redundancy-icon">🖥️</div>
+                        <div>Calculateur A</div>
+                        <div style="font-size: 0.75rem; color: var(--muted);">Intel</div>
+                    </div>
+                    <div class="redundancy-card active">
+                        <div class="redundancy-label">Actif</div>
+                        <div class="redundancy-icon">🖥️</div>
+                        <div>Calculateur B</div>
+                        <div style="font-size: 0.75rem; color: var(--muted);">Motorola</div>
+                    </div>
+                    <div class="redundancy-card active">
+                        <div class="redundancy-label">Actif</div>
+                        <div class="redundancy-icon">🖥️</div>
+                        <div>Calculateur C</div>
+                        <div style="font-size: 0.75rem; color: var(--muted);">AMD</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: var(--muted); font-size: 0.85rem;">↓ Voteur majoritaire : 2 sur 3 doivent être d'accord ↓</p>
+            </div>
+
+            <div class="script-box">
+                <p>« Sur un Airbus A350, les commandes de vol électriques utilisent une architecture "triplex dissimilaire". Trois calculateurs, utilisant des processeurs de fabricants différents et des logiciels développés par des équipes distinctes, calculent simultanément les ordres de vol. Un voteur compare leurs résultats et applique la majorité. Ainsi, même si un calculateur a un bug ou une panne, les deux autres maintiennent l'avion en sécurité. »</p>
+            </div>
+
+            <div class="formula">
+                <div class="formula-title">Probabilité de panne système avec redondance triple</div>
+                <div class="formula-content">P<sub>système</sub> = 3 × P² - 2 × P³</div>
+                <p style="margin-top: 1rem; color: var(--muted); font-size: 0.85rem;">Si P = 10⁻³ (panne composant) → P<sub>système</sub> ≈ 3 × 10⁻⁶</p>
+            </div>
+
+            <div class="alert tip">
+                <span class="alert-icon">🎓</span>
+                <div class="alert-content">
+                    <h4>Point technique à maîtriser</h4>
+                    <p>Si on te demande "Pourquoi des processeurs différents ?", réponds : "C'est la redondance dissimilaire. Si un bug logiciel affecte un type de processeur, les autres ne seront pas touchés. Ça protège contre les pannes de mode commun."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTIE 2 -->
+        <section id="partie2" class="section" style="--c: var(--p2);">
+            <div class="section-header">
+                <div class="section-number" style="background: linear-gradient(135deg, var(--p2), var(--p1));">2</div>
+                <div>
+                    <h2 class="section-title">Optimisation Masse & Énergie</h2>
+                    <p class="section-subtitle">1 minute 30 — Le défi de l'ingénieur aéronautique</p>
+                </div>
+            </div>
+
+            <div class="script-box">
+                <p>« La redondance a un coût : chaque composant ajouté augmente la masse et la consommation électrique. Or, dans un avion, chaque kilogramme compte. On estime qu'un kilo supplémentaire sur un long-courrier coûte environ 100€ de kérosène par an. Et la consommation électrique des systèmes avioniques représente déjà 5% de la puissance totale des moteurs. »</p>
+            </div>
+
+            <div class="content-card">
+                <h4>⚖️ Le trilemme de l'avionique</h4>
+                <div class="diagram-flow" style="margin-top: 1rem;">
+                    <div class="diagram-box">Fiabilité</div>
+                    <span class="diagram-arrow">⟷</span>
+                    <div class="diagram-box">Masse</div>
+                    <span class="diagram-arrow">⟷</span>
+                    <div class="diagram-box">Énergie</div>
+                </div>
+                <p style="margin-top: 1rem; color: var(--muted); font-size: 0.9rem; text-align: center;">Améliorer un paramètre dégrade souvent les autres</p>
+            </div>
+
+            <div class="content-card">
+                <h4>📊 Chiffres clés (Airbus A350)</h4>
+                <ul>
+                    <li><strong>Masse avionique totale</strong> : ~2 000 kg (sur 280 tonnes au décollage)</li>
+                    <li><strong>Consommation électrique</strong> : ~400 kW en croisière</li>
+                    <li><strong>Nombre de calculateurs</strong> : >100 (dont beaucoup redondés)</li>
+                    <li><strong>Câblage</strong> : ~500 km de câbles, pesant 5 tonnes</li>
+                </ul>
+            </div>
+
+            <div class="script-box">
+                <p>« Pour optimiser ce compromis, les ingénieurs utilisent plusieurs stratégies. Premièrement, l'architecture IMA — Integrated Modular Avionics. Au lieu d'avoir un calculateur dédié par fonction, on mutualise des calculateurs génériques qui exécutent plusieurs applications. Un seul boîtier peut gérer la navigation, le pilote automatique et la gestion du carburant. »</p>
+            </div>
+
+            <div class="diagram">
+                <div class="diagram-title">Évolution des architectures avioniques</div>
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+                    <div style="text-align: center;">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">Architecture fédérée</div>
+                        <div style="font-size: 0.8rem; color: var(--muted);">(Ancienne génération)</div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <div class="diagram-box" style="font-size: 0.75rem;">Nav</div>
+                            <div class="diagram-box" style="font-size: 0.75rem;">Vol</div>
+                            <div class="diagram-box" style="font-size: 0.75rem;">Fuel</div>
+                            <div class="diagram-box" style="font-size: 0.75rem;">Com</div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--p2); margin-top: 0.5rem;">4 boîtiers = +masse, +câbles</p>
+                    </div>
+                    <div style="font-size: 2rem; color: var(--muted); align-self: center;">→</div>
+                    <div style="text-align: center;">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">Architecture IMA</div>
+                        <div style="font-size: 0.8rem; color: var(--muted);">(Nouvelle génération)</div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <div class="diagram-box" style="font-size: 0.75rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(6, 182, 212, 0.4)); border-color: var(--p3);">IMA<br>Module</div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--p3); margin-top: 0.5rem;">1 boîtier mutualisé</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="script-box">
+                <p>« Deuxièmement, on optimise la consommation en utilisant des composants électroniques basse consommation et en appliquant des modes de veille. Les systèmes non critiques peuvent être mis en sommeil pendant certaines phases de vol. Troisièmement, on réduit la masse du câblage en passant au tout-numérique : les bus AFDX remplacent des centaines de fils analogiques par quelques fibres optiques. »</p>
+            </div>
+
+            <div class="content-card">
+                <h4>🔧 Stratégies d'optimisation</h4>
+                <ul>
+                    <li><strong>IMA (Integrated Modular Avionics)</strong> : Mutualisation des calculateurs → -30% de masse</li>
+                    <li><strong>Bus AFDX</strong> : Réseau Ethernet déterministe → câblage réduit de 50%</li>
+                    <li><strong>Composants COTS</strong> : Composants commerciaux durcis → coût réduit, performance accrue</li>
+                    <li><strong>Redondance adaptative</strong> : Niveau de redondance ajusté selon la criticité réelle</li>
+                </ul>
+            </div>
+
+            <div class="formula">
+                <div class="formula-title">Gain de masse avec IMA (exemple A380)</div>
+                <div class="formula-content">ΔM = M<sub>fédérée</sub> - M<sub>IMA</sub> ≈ 500 kg</div>
+                <p style="margin-top: 1rem; color: var(--muted); font-size: 0.85rem;">Soit ~50 000€/an d'économie de carburant</p>
+            </div>
+
+            <div class="alert">
+                <span class="alert-icon">🔑</span>
+                <div class="alert-content">
+                    <h4>Argument massue</h4>
+                    <p>« L'architecture IMA est un exemple parfait de l'optimisation multi-objectif : on améliore la fiabilité (moins de connecteurs = moins de points de panne), on réduit la masse (moins de boîtiers), et on diminue la consommation (processeurs partagés optimisés). C'est un cercle vertueux. »</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section id="conclusion" class="section" style="--c: var(--p3);">
+            <div class="section-header">
+                <div class="section-number" style="background: linear-gradient(135deg, var(--p3), var(--p5));">3</div>
+                <div>
+                    <h2 class="section-title">Conclusion & Ouverture</h2>
+                    <p class="section-subtitle">1 minute — Synthèse et projection</p>
+                </div>
+            </div>
+
+            <div class="script-box">
+                <p>« Pour conclure, j'ai montré que la fiabilité des systèmes avioniques repose sur la redondance — la duplication intelligente des composants critiques. Les architectures comme le TMR dissimilaire permettent d'atteindre des taux de panne inférieurs à 10⁻⁹ par heure. Cependant, cette redondance a un coût en masse et en énergie. »</p>
+            </div>
+
+            <div class="content-card">
+                <h4>✅ Points clés à retenir</h4>
+                <ul>
+                    <li>La redondance = duplication + voteur pour tolérer les pannes</li>
+                    <li>La redondance dissimilaire protège contre les pannes de mode commun</li>
+                    <li>L'IMA mutualise les calculateurs → gain masse/énergie</li>
+                    <li>Le compromis fiabilité/masse/énergie est au cœur du métier d'ingénieur aéronautique</li>
+                </ul>
+            </div>
+
+            <div class="script-box">
+                <p>« Les ingénieurs relèvent ce défi grâce à des architectures innovantes comme l'IMA, qui mutualisent les ressources sans sacrifier la sécurité. En ouverture, je voudrais mentionner les avions plus électriques, comme les futurs avions à hydrogène. Avec la disparition des systèmes hydrauliques, l'avionique devra assumer encore plus de fonctions, rendant l'optimisation masse/énergie encore plus cruciale. C'est un domaine passionnant qui m'attire pour mes études d'ingénieur. »</p>
+            </div>
+
+            <div class="alert tip">
+                <span class="alert-icon">🎯</span>
+                <div class="alert-content">
+                    <h4>Lien avec le projet d'orientation</h4>
+                    <p>Adapte cette ouverture selon ton projet. Si tu vises l'aéronautique, parle des avions électriques. Si tu préfères le spatial, mentionne que les mêmes principes s'appliquent aux fusées. Montre ta motivation personnelle.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUESTIONS -->
+        <section id="questions" class="section" style="--c: var(--p5);">
+            <div class="section-header">
+                <div class="section-number" style="background: linear-gradient(135deg, var(--p5), var(--p4));">?</div>
+                <div>
+                    <h2 class="section-title">Questions Anticipées</h2>
+                    <p class="section-subtitle">Prépare-toi aux questions du jury (10 minutes)</p>
+                </div>
+            </div>
+
+            <div class="questions-prep">
+                <h4>❓ Questions techniques probables</h4>
+
+                <div class="question-item">
+                    <p class="q">Q: C'est quoi exactement une panne de mode commun ?</p>
+                    <p class="a">R: C'est une panne qui affecte simultanément tous les systèmes redondants à cause d'une cause unique. Par exemple, un bug logiciel présent dans les trois calculateurs identiques. La redondance dissimilaire (processeurs et logiciels différents) protège contre ce risque.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Pourquoi 10⁻⁹ et pas 10⁻¹² ?</p>
+                    <p class="a">R: C'est un compromis. 10⁻⁹ par heure signifie moins d'une panne catastrophique par milliard d'heures de vol. Avec des millions d'heures de vol commerciales par an, c'est statistiquement acceptable. Aller plus loin demanderait une redondance encore plus lourde, avec un coût masse/énergie disproportionné.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Comment fonctionne le voteur ?</p>
+                    <p class="a">R: Le voteur compare en temps réel les sorties des calculateurs redondants. Si deux sur trois donnent le même résultat, c'est celui qui est appliqué. Si un calculateur diverge, il est isolé et signalé en panne. Le vote est majoritaire : 2/3 suffit pour valider.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Qu'est-ce que l'IMA exactement ?</p>
+                    <p class="a">R: IMA signifie Integrated Modular Avionics. C'est une architecture où des calculateurs génériques standardisés (appelés LRU - Line Replaceable Units) exécutent plusieurs applications logicielles partitionnées. Chaque application est isolée pour éviter qu'un bug se propage.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Que se passe-t-il si les trois calculateurs donnent trois résultats différents ?</p>
+                    <p class="a">R: C'est une situation rare mais prévue. Le système passe en mode dégradé : il peut utiliser une logique de fallback (le dernier résultat valide) ou alerter le pilote pour qu'il reprenne le contrôle manuel. C'est pour cela que les pilotes sont toujours formés au pilotage sans automatismes.</p>
+                </div>
+            </div>
+
+            <div class="questions-prep">
+                <h4>🧠 Questions sur ta démarche</h4>
+
+                <div class="question-item">
+                    <p class="q">Q: Pourquoi as-tu choisi ce sujet ?</p>
+                    <p class="a">R: L'aéronautique m'a toujours fasciné, et je voulais comprendre comment on peut garantir une sécurité aussi élevée. La redondance est un concept élégant qui montre comment l'ingénierie résout des problèmes de vie ou de mort avec des solutions systématiques.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Qu'est-ce qui t'a le plus surpris dans tes recherches ?</p>
+                    <p class="a">R: J'ai été surpris par le niveau de formalisme. Chaque ligne de code d'un système critique est tracée, testée, et certifiée. Le développement d'un logiciel DAL A coûte 10 fois plus cher qu'un logiciel classique. C'est une rigueur impressionnante.</p>
+                </div>
+
+                <div class="question-item">
+                    <p class="q">Q: Comment ce sujet s'inscrit dans ton projet professionnel ?</p>
+                    <p class="a">R: [À personnaliser] — Ex: "Je vise une école d'ingénieurs avec spécialisation aéronautique. Ce sujet m'a montré que la sécurité est au cœur du métier, pas seulement la performance. Ça m'a conforté dans mon choix de carrière."</p>
+                </div>
+            </div>
+
+            <div class="alert">
+                <span class="alert-icon">⚠️</span>
+                <div class="alert-content">
+                    <h4>Si tu ne connais pas la réponse</h4>
+                    <p>Dis : "C'est un aspect que je n'ai pas approfondi, mais je pense que..." et propose une hypothèse logique. Ou reconnaît simplement : "Je ne connais pas ce détail précis, mais je serais curieux de creuser la question." L'honnêteté est toujours valorisée.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Sujet 2 — Systèmes Avioniques & Redondance</p>
+        <p style="margin-top: 0.5rem; color: var(--muted);">Grand Oral Baccalauréat 2026</p>
+        <a href="index.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Retour à l'accueil
+        </a>
+    </footer>
+
+    <script>
+        // Intersection Observer pour les animations
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Smooth scroll pour les liens internes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

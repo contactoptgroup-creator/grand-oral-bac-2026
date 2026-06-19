@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Oral Bac 2026 - Préparation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card: #12121a;
+            --border: #1e1e2e;
+            --text: #e4e4e7;
+            --muted: #71717a;
+            --accent1: #8b5cf6;
+            --accent2: #06b6d4;
+            --accent3: #f59e0b;
+            --success: #22c55e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #8b5cf6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: shimmerText 3s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes shimmerText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Subject Cards */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .subject-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent1);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .subject-card.sar::before {
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        }
+
+        .subject-card.avionics::before {
+            background: linear-gradient(90deg, var(--accent3), #ef4444);
+        }
+
+        .subject-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .subject-card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .subject-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .subject-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.35rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .subject-card.avionics .tag {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent1), var(--accent2));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Methodology Section */
+        .methodology {
+            margin-top: 6rem;
+            padding: 4rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+        }
+
+        .methodology h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .method-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .method-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .method-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent1), var(--accent2));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .method-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin-top: 4rem;
+        }
+
+        .timeline h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .timeline-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .timeline-step {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--accent1), var(--accent2));
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--accent1);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <section class="hero">
+            <div class="hero-badge">
+                <span>🎓</span>
+                <span>Baccalauréat 2026</span>
+            </div>
+            <h1>Grand Oral<br>Sciences de l'Ingénieur</h1>
+            <p>Deux sujets préparés avec méthodologie, structure argumentative et démonstrations techniques pour convaincre le jury.</p>
+        </section>
+
+        <div class="subjects-grid">
+            <a href="sujet1-satellites-sar.html" class="subject-card sar animate">
+                <div class="subject-number">Sujet 01</div>
+                <h2>Satellites Radar SAR & Déforestation</h2>
+                <p>Architecture embarquée des satellites radar SAR pour l'étude de la déforestation en temps réel, avec adaptation météorologique et contraintes énergétiques spatiales.</p>
+                <div class="subject-tags">
+                    <span class="tag">Traitement du signal</span>
+                    <span class="tag">Radar SAR</span>
+                    <span class="tag">Énergie spatiale</span>
+                    <span class="tag">Temps réel</span>
+                </div>
+                <span class="cta-button">
+                    Accéder au sujet
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </span>
+            </a>
+
+            <a href="sujet2-avionique.html" class="subject-card avionics animate delay-1">
+                <div class="subject-number">Sujet 02</div>
+                <h2>Systèmes Avioniques & Redondance</h2>
+                <p>Fiabilité des systèmes électroniques critiques en vol grâce à la redondance, tout en limitant masse et consommation énergétique.</p>
+                <div class="subject-tags">
+                    <span class="tag">Redondance</span>
+                    <span class="tag">Avionique</span>
+                    <span class="tag">Fiabilité</span>
+                    <span class="tag">Masse critique</span>
+                </div>
+                <span class="cta-button">
+                    Accéder au sujet
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </span>
+            </a>
+        </div>
+
+        <section class="methodology animate delay-2">
+            <h2>🎯 Méthodologie du Grand Oral</h2>
+            <div class="method-grid">
+                <div class="method-card">
+                    <h3>
+                        <span class="method-icon">1</span>
+                        Accroche percutante
+                    </h3>
+                    <p>Commence par un fait marquant, une question provocatrice ou un chiffre choc. Capte l'attention du jury dès les 10 premières secondes.</p>
+                </div>
+                <div class="method-card">
+                    <h3>
+                        <span class="method-icon">2</span>
+                        Problématique claire
+                    </h3>
+                    <p>Reformule la question avec tes propres mots. Montre que tu as compris les enjeux et les tensions du sujet.</p>
+                </div>
+                <div class="method-card">
+                    <h3>
+                        <span class="method-icon">3</span>
+                        Plan structuré
+                    </h3>
+                    <p>Annonce un plan en 2-3 parties maximum. Chaque partie doit répondre à un aspect de la problématique.</p>
+                </div>
+                <div class="method-card">
+                    <h3>
+                        <span class="method-icon">4</span>
+                        Argumentation technique
+                    </h3>
+                    <p>Utilise des exemples concrets, des chiffres, des schémas mentaux. Montre ta maîtrise technique sans jargonner.</p>
+                </div>
+                <div class="method-card">
+                    <h3>
+                        <span class="method-icon">5</span>
+                        Ouverture finale
+                    </h3>
+                    <p>Conclus avec une ouverture vers l'avenir, un lien avec ton projet professionnel ou une question plus large.</p>
+                </div>
+                <div class="method-card">
+                    <h3>
+                        <span class="method-icon">6</span>
+                        Posture & regard
+                    </h3>
+                    <p>Tiens-toi droit, regarde les jurys tour à tour, parle avec conviction. Ta posture communique autant que tes mots.</p>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h3>⏱️ Structure des 5 minutes</h3>
+                <div class="timeline-steps">
+                    <div class="timeline-step">
+                        <span class="step-number">1</span>
+                        <span>Accroche (30s)</span>
+                    </div>
+                    <div class="timeline-step">
+                        <span class="step-number">2</span>
+                        <span>Problématique (30s)</span>
+                    </div>
+                    <div class="timeline-step">
+                        <span class="step-number">3</span>
+                        <span>Partie 1 (1min30)</span>
+                    </div>
+                    <div class="timeline-step">
+                        <span class="step-number">4</span>
+                        <span>Partie 2 (1min30)</span>
+                    </div>
+                    <div class="timeline-step">
+                        <span class="step-number">5</span>
+                        <span>Conclusion (1min)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Préparation Grand Oral Bac 2026 — Sciences de l'Ingénieur</p>
+        <p style="margin-top: 0.5rem;">Créé avec méthodologie pour réussir</p>
+    </footer>
+</body>
+</html>
